@@ -2,6 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الصقر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -12,8 +15,8 @@
             align-items: center;
             background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
             background-size: 300% 300%;
-            animation: gradientShift 10s ease infinite;
-            font-family: 'Segoe UI', sans-serif;
+            animation: gradientShift 10s ease infinite, fadeIn 1.5s ease-in;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             text-align: center;
         }
@@ -24,23 +27,38 @@
             100% { background-position: 0% 50%; }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 { margin-bottom: 30px; font-weight: 300; letter-spacing: 2px; }
+
         .social-btn {
             display: block;
-            width: 250px;
+            width: 260px;
             padding: 15px;
-            margin: 15px auto;
+            margin: 12px auto;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
             color: white;
             text-decoration: none;
             background: rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+            font-size: 1.1em;
+            animation: pulse 2s infinite;
         }
 
         .social-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
     </style>
 </head>
@@ -48,8 +66,9 @@
 
     <h1>مرحباً بكم في صفحة الصقر</h1>
     
-    <a href="رابط_سنابك" class="social-btn">سناب شات</a>
-    <a href="رابط_انستقرامك" class="social-btn">انستقرام</a>
+    <a href="https://www.tiktok.com/@eoql55?_r=1&_t=ZS-97bE7oVTRCh" class="social-btn"><i class="fab fa-tiktok"></i> تيك توك</a>
+    <a href="https://www.instagram.com/2rab_o?igsh=OGl0ajgweGc3dnRp&utm_source=qr" class="social-btn"><i class="fab fa-instagram"></i> انستقرام</a>
+    <a href="https://snapchat.com/t/yZPSkBZp" class="social-btn"><i class="fab fa-snapchat"></i> سناب شات</a>
 
     <audio id="myAudio" loop>
         <source src="song.mp3" type="audio/mpeg">
@@ -58,7 +77,9 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("myAudio");
-            audio.play();
+            if (audio.paused) {
+                audio.play();
+            }
         }
     </script>
 </body>
