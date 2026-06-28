@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>alsaqoor.online</title>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc); background-size: 400% 400%; animation: gradient 10s ease infinite; font-family: sans-serif; color: white; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .btn { margin: 15px; padding: 20px 40px; background: rgba(255, 255, 255, 0.2); border: 2px solid white; border-radius: 50px; color: white; text-decoration: none; font-size: 20px; transition: 0.3s; cursor: pointer; }
+        .btn:hover { background: white; color: #ff00cc; }
+    </style>
+</head>
+<body>
+    <h1>مرحباً بكم في صفحة الصقر</h1>
+    <button class="btn" onclick="startAudio()">اضغط هنا للدخول</button>
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <div id="links" style="display:none;">
+        <a href="https://instagram.com/your-username" class="btn">الانستقرام</a>
+        <a href="https://snapchat.com/add/your-username" class="btn">السناب</a>
+    </div>
+    <script>
+        function startAudio() {
+            document.getElementById('bg-music').play();
+            document.getElementById('links').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
