@@ -2,36 +2,58 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAGER | OPS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GHOST OPS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Courier New', Courier, monospace; color: #fff; text-align: center; overflow: hidden; }
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Courier New', Courier, monospace; color: #fff; text-align: center; overflow: hidden; background-color: #0a0000; }
         
-        /* خلفية الفيديو */
-        #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover; }
+        /* خلفية الفيديو - توافق كامل مع الآيفون */
+        #bg-video { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto; 
+            height: auto; 
+            z-index: -2; 
+            transform: translate(-50%, -50%); 
+            object-fit: cover; 
+            background-size: cover;
+        }
         
-        /* تأثير "غرفة العمليات" العسكري (شفافية سوداء وحمراء فخمة) */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(20, 0, 0, 0.65), rgba(0, 0, 0, 0.85)); z-index: -1; }
+        /* تأثير الغرفة العسكرية المظلمة */
+        .overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(rgba(20, 0, 0, 0.6), rgba(0, 0, 0, 0.85)); 
+            z-index: -1; 
+        }
 
-        h1 { margin-bottom: 40px; font-weight: bold; letter-spacing: 5px; text-transform: uppercase; text-shadow: 0 0 10px #ff0000; border-bottom: 2px solid #ff0000; padding-bottom: 10px; }
+        h1 { margin-bottom: 40px; font-weight: bold; letter-spacing: 5px; text-transform: uppercase; text-shadow: 0 0 10px #ff0000; border-bottom: 2px solid #ff0000; padding-bottom: 10px; font-size: 2rem; }
         
         .social-btn {
             display: block; width: 280px; padding: 18px; margin: 15px auto; 
-            border: 1px solid #ff0000; border-radius: 0; /* زوايا حادة للطابع العسكري */
-            color: #fff; text-decoration: none; background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px); transition: 0.4s; font-size: 1.2em;
-            text-transform: uppercase;
+            border: 1px solid #ff0000; border-radius: 0; 
+            color: #fff; text-decoration: none; background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); transition: 0.3s; font-size: 1.1em;
+            text-transform: uppercase; font-weight: bold;
         }
-        .social-btn:hover { background: #ff0000; color: black; font-weight: bold; transform: scale(1.02); }
+        .social-btn:hover { background: #ff0000; color: black; transform: scale(1.02); }
     </style>
 </head>
 <body onclick="playMedia()">
 
-    <!-- هنا يتم استدعاء فيديو قوست المسمى background.mp4 -->
-    <video id="bg-video" autoplay muted loop playsinline>
+    <!-- كود الفيديو المطور للـ iOS والسفاري -->
+    <video id="bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto" muted="muted">
         <source src="background.mp4" type="video/mp4">
     </video>
+    
     <div class="overlay"></div>
 
     <h1>GHOST OPS</h1>
@@ -40,16 +62,27 @@
     <a href="https://www.instagram.com/2rab_o" class="social-btn"><i class="fab fa-instagram"></i> INSTAGRAM</a>
     <a href="https://snapchat.com/t/yZPSkBZp" class="social-btn"><i class="fab fa-snapchat"></i> SNAPCHAT</a>
 
-    <!-- هنا الأغنية الخاصة بك -->
     <audio id="myAudio" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
+        // كود تشغيل الصوت والفيديو معاً عند الضغط
         function playMedia() {
             var audio = document.getElementById("myAudio");
+            var video = document.getElementById("bg-video");
+            
             if (audio.paused) { audio.play(); }
+            if (video.paused) { video.play(); }
         }
+        
+        // محاولة تشغيل الفيديو تلقائياً فور التحميل كإجراء إضافي
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById("bg-video");
+            video.play().catch(function(error) {
+                console.log("تأمين المتصفح نشط، سيتم التشغيل عند أول نقرة.");
+            });
+        });
     </script>
 </body>
 </html>
